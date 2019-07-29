@@ -1,0 +1,24 @@
+
+#include <SoftwareSerial.h>     //helps in serial communication
+#include <dht.h>                //library for sensor dht-11
+dht DHT;
+int sensor=A0;
+void setup()
+{
+  Serial.begin(9600);                //Serial communication baud rate
+  Serial.println("DHT11 Humidity and temperature Sensor\n\n");
+  pinMode(sensor, INPUT);
+}
+
+void loop()
+{
+  DHT.read11(sensor);
+
+  Serial.print("Current humidity=");
+  Serial.print(DHT.humidity);                 //for humidity
+  Serial.print("% ");
+  Serial.print("Current temperature=");
+  Serial.print(DHT.temperature);             //for temperature
+  Serial.println("C");
+  delay(1000);
+}
